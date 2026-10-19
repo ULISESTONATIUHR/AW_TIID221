@@ -30,27 +30,42 @@ $query =mysqli_query($con,$sql);
             </tr>
         </thead>
         <tbody>
-            <tr>
-               
-                <td>1</td>
-            
-            <td>125053572</td>
            
-            <td>Ulises</td>
-            
-            <td>Acatecatl</td>
-         
-             <td>Ramirez</td>
-           
-            <td>19</td>
-            
-            <td>editar eliminar</td>
 
-        </tr>
+
+            <?php
+                while($row=mysqli_fetch_array($query)){
+            ?>
+                <tr>
+                    <th><?php  echo $row['id']?></th>
+                    <th><?php  echo $row['matricula']?></th>
+                    <th><?php  echo $row['nombre']?></th>
+                    <th><?php  echo $row['apellido_p']?></th>
+                    <th><?php  echo $row['apellido_m']?></th>
+                    <th><?php  echo $row['edad']?></th>    
+                    <td>
+                       <a href="Delete.php?id=<?php echo $row['id'] ?>">eliminar</a>
+                        <br>
+                        <a href="editar.php?id=<?php echo $row['id'] ?>">editar</a>
+                        </td>                                  
+                </tr>
+            <?php 
+                }
+            ?>
         
         
 
         </body>
+</table>
+<h1>FORMULARIO</h1>
+<form action="insertar.php" method="POST">
+    <input type="text" class="form-control" name="matricula" placeholder="matricula">
+    <input type="text" class="form-control" name="nombre" placeholder="nombre">
+    <input type="text" class="form-control" name="apellido_p" placeholder="apellido_paterno">
+    <input type="text" class="form-control" name="apellido_m" placeholder="apellido_materno">
+    <input type="text" class="form-control" name="edad" placeholder="edad">
+   <button type="submit" class="btn btn-primary">GUARDAR</button>
+</form>
 </html>
 
         
